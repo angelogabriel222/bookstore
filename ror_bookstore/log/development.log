@@ -1,0 +1,809 @@
+  [1m[35m (114.0ms)[0m  [1m[35mCREATE DATABASE "ror_bookstore_development" ENCODING = 'unicode' /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35m (143.3ms)[0m  [1m[35mCREATE DATABASE "ror_bookstore_development" ENCODING = 'unicode' /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35m (104.3ms)[0m  [1m[35mCREATE DATABASE "ror_bookstore_test" ENCODING = 'unicode' /*application='RorBookstore'*/[0m
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='RorBookstore'*/[0m
+  [1m[35m (10.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4017774504071571285) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-05-13 01:59:50.103386', '2026-05-13 01:59:50.103392') RETURNING "key" /*application='RorBookstore'*/[0m
+Migrating to DeviseCreateUsers (20260513015716)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "remember_created_at" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='RorBookstore'*/[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260513015716') RETURNING "version" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+Migrating to CreateAuthors (20260513015722)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "authors" ("id" bigserial primary key, "name" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260513015722') RETURNING "version" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+Migrating to CreatePublishers (20260513015723)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "publishers" ("id" bigserial primary key, "name" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260513015723') RETURNING "version" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+Migrating to CreateGenres (20260513015724)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE TABLE "genres" ("id" bigserial primary key, "name" character varying, "description" text, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260513015724') RETURNING "version" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+Migrating to CreateBooks (20260513015725)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "books" ("id" bigserial primary key, "name" character varying, "description" text, "price" decimal, "author_id" bigint NOT NULL, "publisher_id" bigint NOT NULL, "genre_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_53d51ce16a"
+FOREIGN KEY ("author_id")
+  REFERENCES "authors" ("id")
+, CONSTRAINT "fk_rails_d7ae2b039e"
+FOREIGN KEY ("publisher_id")
+  REFERENCES "publishers" ("id")
+, CONSTRAINT "fk_rails_776de3933f"
+FOREIGN KEY ("genre_id")
+  REFERENCES "genres" ("id")
+) /*application='RorBookstore'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_books_on_author_id" ON "books" ("author_id") /*application='RorBookstore'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE INDEX "index_books_on_publisher_id" ON "books" ("publisher_id") /*application='RorBookstore'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE INDEX "index_books_on_genre_id" ON "books" ("genre_id") /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260513015725') RETURNING "version" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+Migrating to AddRoleToUsers (20260513015730)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "users" ADD "role" integer /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260513015730') RETURNING "version" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+Migrating to CreateJwtDenylists (20260513015758)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "jwt_denylists" ("id" bigserial primary key, "jti" character varying, "exp" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylists_on_jti" ON "jwt_denylists" ("jti") /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260513015758') RETURNING "version" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(4017774504071571285) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (24.1ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Gabriel García Márquez' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (1.3ms)[0m  [1m[32mINSERT INTO "authors" ("name", "description", "created_at", "updated_at") VALUES ('Gabriel García Márquez', 'Colombian novelist', '2026-05-13 02:01:28.282819', '2026-05-13 02:01:28.282819') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'J.K. Rowling' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.4ms)[0m  [1m[32mINSERT INTO "authors" ("name", "description", "created_at", "updated_at") VALUES ('J.K. Rowling', 'British author', '2026-05-13 02:01:28.297165', '2026-05-13 02:01:28.297165') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'George Orwell' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.5ms)[0m  [1m[32mINSERT INTO "authors" ("name", "description", "created_at", "updated_at") VALUES ('George Orwell', 'English novelist', '2026-05-13 02:01:28.309499', '2026-05-13 02:01:28.309499') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "publishers" WHERE "publishers"."name" = 'Penguin Random House' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Create (0.9ms)[0m  [1m[32mINSERT INTO "publishers" ("name", "description", "created_at", "updated_at") VALUES ('Penguin Random House', 'Global publishing house', '2026-05-13 02:01:28.329878', '2026-05-13 02:01:28.329878') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "publishers" WHERE "publishers"."name" = 'HarperCollins' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Create (0.5ms)[0m  [1m[32mINSERT INTO "publishers" ("name", "description", "created_at", "updated_at") VALUES ('HarperCollins', 'International publisher', '2026-05-13 02:01:28.342007', '2026-05-13 02:01:28.342007') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Fiction' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.6ms)[0m  [1m[32mINSERT INTO "genres" ("name", "description", "created_at", "updated_at") VALUES ('Fiction', 'Literary fiction', '2026-05-13 02:01:28.362258', '2026-05-13 02:01:28.362258') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.9ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Fantasy' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.5ms)[0m  [1m[32mINSERT INTO "genres" ("name", "description", "created_at", "updated_at") VALUES ('Fantasy', 'Fantasy genre', '2026-05-13 02:01:28.374592', '2026-05-13 02:01:28.374592') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Dystopian' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.6ms)[0m  [1m[32mINSERT INTO "genres" ("name", "description", "created_at", "updated_at") VALUES ('Dystopian', 'Dystopian fiction', '2026-05-13 02:01:28.387793', '2026-05-13 02:01:28.387793') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (6.2ms)[0m  [1m[32mINSERT INTO "books" ("name", "description", "price", "author_id", "publisher_id", "genre_id", "created_at", "updated_at") VALUES ('Cien Años de Soledad', 'Masterpiece of magical realism', 25.99, 1, 1, 1, '2026-05-13 02:01:28.424031', '2026-05-13 02:01:28.424031') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.7ms)[0m  [1m[32mINSERT INTO "books" ("name", "description", "price", "author_id", "publisher_id", "genre_id", "created_at", "updated_at") VALUES ('Harry Potter and the Philosopher''s Stone', 'First Harry Potter book', 19.99, 2, 2, 2, '2026-05-13 02:01:28.437783', '2026-05-13 02:01:28.437783') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.9ms)[0m  [1m[32mINSERT INTO "books" ("name", "description", "price", "author_id", "publisher_id", "genre_id", "created_at", "updated_at") VALUES ('1984', 'Classic dystopian novel', 15.99, 3, 1, 3, '2026-05-13 02:01:28.446886', '2026-05-13 02:01:28.446886') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mUser Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'superadmin@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "role") VALUES ('superadmin@test.com', '$2a$12$AOpHUX/njBr0RK9nq7Aw5ebELIpG4Jd5r42IzLxK0Jwjo8Zipsyxq', NULL, NULL, NULL, '2026-05-13 02:01:28.867414', '2026-05-13 02:01:28.867414', 2) RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (9.9ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mUser Exists? (3.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "role") VALUES ('admin@test.com', '$2a$12$z91Ek9lYpo5POpu5ZQZwJOdKYc44CxpvPx5OXIK16FMrnkSrkciKe', NULL, NULL, NULL, '2026-05-13 02:01:29.277006', '2026-05-13 02:01:29.277006', 1) RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mUser Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'customer@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at", "role") VALUES ('customer@test.com', '$2a$12$wEz1JWE0VO191k6s0aDsAuCKiRWAbGlQ/AZfKF9vMaQ9CVLcB8/22', NULL, NULL, NULL, '2026-05-13 02:01:29.685083', '2026-05-13 02:01:29.685083', 0) RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mUser Count (21.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" /*application='RorBookstore'*/[0m
+  [1m[36mBook Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*application='RorBookstore'*/[0m
+Started GET "/" for ::1 at 2026-05-12 22:18:15 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/ag_pulido/.rbenv/versions/3.3.3/lib/ruby/gems/3.3.0/gems/railties-8.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/ag_pulido/.rbenv/versions/3.3.3/lib/ruby/gems/3.3.0/gems/railties-8.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.7ms | GC: 0.8ms)
+Completed 200 OK in 287ms (Views: 11.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 40.5ms)
+
+
+Started GET "/icon.png" for ::1 at 2026-05-12 22:18:15 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+Started GET "/sw.js" for ::1 at 2026-05-12 22:18:17 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+Started GET "/api-docs" for ::1 at 2026-05-12 22:18:48 -0400
+Started GET "/api-docs/index.html" for ::1 at 2026-05-12 22:18:48 -0400
+Started GET "/api-docs/swagger-ui.css" for ::1 at 2026-05-12 22:18:48 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for ::1 at 2026-05-12 22:18:48 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for ::1 at 2026-05-12 22:18:48 -0400
+Started GET "/api-docs/v1/swagger.yaml" for ::1 at 2026-05-12 22:18:48 -0400
+Started GET "/api-docs/favicon-32x32.png" for ::1 at 2026-05-12 22:18:49 -0400
+Started GET "/sw.js" for ::1 at 2026-05-12 22:18:50 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/sw.js"):
+  
+  [1m[35mSQL (0.4ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35m (148.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ror_bookstore_development" /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35m (110.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ror_bookstore_test" /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35m (317.9ms)[0m  [1m[35mCREATE DATABASE "ror_bookstore_development" ENCODING = 'unicode' /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35m (211.0ms)[0m  [1m[35mCREATE DATABASE "ror_bookstore_test" ENCODING = 'unicode' /*application='RorBookstore'*/[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql" SCHEMA pg_catalog /*application='RorBookstore'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "authors" CASCADE /*application='RorBookstore'*/[0m
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE TABLE "authors" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "description" text, "name" character varying, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "books" CASCADE /*application='RorBookstore'*/[0m
+  [1m[35m (14.4ms)[0m  [1m[35mCREATE TABLE "books" ("id" bigserial primary key, "author_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "description" text, "genre_id" bigint NOT NULL, "name" character varying, "price" decimal, "publisher_id" bigint NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE INDEX "index_books_on_author_id" ON "books" ("author_id") /*application='RorBookstore'*/[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE INDEX "index_books_on_genre_id" ON "books" ("genre_id") /*application='RorBookstore'*/[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE INDEX "index_books_on_publisher_id" ON "books" ("publisher_id") /*application='RorBookstore'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "genres" CASCADE /*application='RorBookstore'*/[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "genres" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "description" text, "name" character varying, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "jwt_denylists" CASCADE /*application='RorBookstore'*/[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE TABLE "jwt_denylists" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "exp" timestamp(6), "jti" character varying, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE INDEX "index_jwt_denylists_on_jti" ON "jwt_denylists" ("jti") /*application='RorBookstore'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "publishers" CASCADE /*application='RorBookstore'*/[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "publishers" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "description" text, "name" character varying, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE /*application='RorBookstore'*/[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "remember_created_at" timestamp(6), "reset_password_sent_at" timestamp(6), "reset_password_token" character varying, "role" integer, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='RorBookstore'*/[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='RorBookstore'*/[0m
+  [1m[35m (7.6ms)[0m  [1m[35mALTER TABLE "books" ADD CONSTRAINT "fk_rails_53d51ce16a"
+FOREIGN KEY ("author_id")
+  REFERENCES "authors" ("id")
+ /*application='RorBookstore'*/[0m
+  [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "books" ADD CONSTRAINT "fk_rails_776de3933f"
+FOREIGN KEY ("genre_id")
+  REFERENCES "genres" ("id")
+ /*application='RorBookstore'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "books" ADD CONSTRAINT "fk_rails_d7ae2b039e"
+FOREIGN KEY ("publisher_id")
+  REFERENCES "publishers" ("id")
+ /*application='RorBookstore'*/[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+  [1m[35m (5.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260513015758) /*application='RorBookstore'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20260513015730),
+(20260513015725),
+(20260513015724),
+(20260513015723),
+(20260513015722),
+(20260513015716); /*application='RorBookstore'*/[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-05-13 02:48:45.311820', '2026-05-13 02:48:45.311827') RETURNING "key" /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', 'ceb349b091326457500e036e290f1f4c55a48a37', '2026-05-13 02:48:45.320509', '2026-05-13 02:48:45.320514') RETURNING "key" /*application='RorBookstore'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4017774504071571285) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(4017774504071571285) /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='RorBookstore'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO "$user", public /*application='RorBookstore'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (7.2ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Gabriel Garcia Marquez' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (1.3ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.579772', 'Colombian novelist, Nobel Prize winner', 'Gabriel Garcia Marquez', '2026-05-13 02:48:45.579772') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'J.K. Rowling' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.7ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.599172', 'British author, creator of Harry Potter', 'J.K. Rowling', '2026-05-13 02:48:45.599172') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (7.3ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'George Orwell' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.6ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.622143', 'English novelist and essayist', 'George Orwell', '2026-05-13 02:48:45.622143') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (3.5ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Isabel Allende' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.6ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.638087', 'Chilean-American writer', 'Isabel Allende', '2026-05-13 02:48:45.638087') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (30.2ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Haruki Murakami' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.7ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.678307', 'Japanese novelist and translator', 'Haruki Murakami', '2026-05-13 02:48:45.678307') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Jane Austen' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.6ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.690782', 'English novelist known for social commentary', 'Jane Austen', '2026-05-13 02:48:45.690782') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (4.4ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Stephen King' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.5ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.704426', 'American author of horror and suspense', 'Stephen King', '2026-05-13 02:48:45.704426') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Paulo Coelho' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.6ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.714988', 'Brazilian novelist and lyricist', 'Paulo Coelho', '2026-05-13 02:48:45.714988') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (4.1ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Elena Ferrante' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.5ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.727756', 'Italian novelist', 'Elena Ferrante', '2026-05-13 02:48:45.727756') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "authors" WHERE "authors"."name" = 'Tolkien' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Create (0.5ms)[0m  [1m[32mINSERT INTO "authors" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.738762', 'English writer and philologist', 'Tolkien', '2026-05-13 02:48:45.738762') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "publishers" WHERE "publishers"."name" = 'Penguin Random House' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Create (1.1ms)[0m  [1m[32mINSERT INTO "publishers" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.762302', 'Global publishing house', 'Penguin Random House', '2026-05-13 02:48:45.762302') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Exists? (3.1ms)[0m  [1m[34mSELECT 1 AS one FROM "publishers" WHERE "publishers"."name" = 'HarperCollins' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Create (0.5ms)[0m  [1m[32mINSERT INTO "publishers" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.774844', 'International publisher', 'HarperCollins', '2026-05-13 02:48:45.774844') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "publishers" WHERE "publishers"."name" = 'Simon & Schuster' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Create (0.4ms)[0m  [1m[32mINSERT INTO "publishers" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.786316', 'American publishing company', 'Simon & Schuster', '2026-05-13 02:48:45.786316') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "publishers" WHERE "publishers"."name" = 'Macmillan Publishers' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Create (0.4ms)[0m  [1m[32mINSERT INTO "publishers" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.797101', 'British publishing house', 'Macmillan Publishers', '2026-05-13 02:48:45.797101') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "publishers" WHERE "publishers"."name" = 'Hachette Livre' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Create (0.5ms)[0m  [1m[32mINSERT INTO "publishers" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.807518', 'French publishing group', 'Hachette Livre', '2026-05-13 02:48:45.807518') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Fiction' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (1.0ms)[0m  [1m[32mINSERT INTO "genres" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.826879', 'Literary fiction and classics', 'Fiction', '2026-05-13 02:48:45.826879') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Fantasy' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.5ms)[0m  [1m[32mINSERT INTO "genres" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.838129', 'Fantasy and magical realism', 'Fantasy', '2026-05-13 02:48:45.838129') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Dystopian' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.5ms)[0m  [1m[32mINSERT INTO "genres" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.849528', 'Dystopian and speculative fiction', 'Dystopian', '2026-05-13 02:48:45.849528') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.6ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Romance' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.5ms)[0m  [1m[32mINSERT INTO "genres" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.860500', 'Romance and relationships', 'Romance', '2026-05-13 02:48:45.860500') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Horror' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.5ms)[0m  [1m[32mINSERT INTO "genres" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.871420', 'Horror and suspense', 'Horror', '2026-05-13 02:48:45.871420') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (3.6ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Science Fiction' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.5ms)[0m  [1m[32mINSERT INTO "genres" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.900482', 'Science fiction and futuristic', 'Science Fiction', '2026-05-13 02:48:45.900482') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mGenre Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "genres" WHERE "genres"."name" = 'Historical' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mGenre Create (0.5ms)[0m  [1m[32mINSERT INTO "genres" ("created_at", "description", "name", "updated_at") VALUES ('2026-05-13 02:48:45.911626', 'Historical fiction', 'Historical', '2026-05-13 02:48:45.911626') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (4.6ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (1, '2026-05-13 02:48:45.941632', 'The multi-generational story of the Buendia family in Macondo', 2, 'Cien Anos de Soledad', 25.99, 1, '2026-05-13 02:48:45.941632') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (3.1ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (2, '2026-05-13 02:48:45.954780', 'The first book in the Harry Potter series', 2, 'Harry Potter and the Philosopher''s Stone', 19.99, 2, '2026-05-13 02:48:45.954780') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.8ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (3, '2026-05-13 02:48:45.964286', 'A dystopian novel set in a totalitarian society', 3, '1984', 15.99, 1, '2026-05-13 02:48:45.964286') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.4ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (4, '2026-05-13 02:48:45.973121', 'A family saga set in an unnamed Latin American country', 1, 'The House of the Spirits', 22.5, 3, '2026-05-13 02:48:45.973121') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (3.3ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (5, '2026-05-13 02:48:45.983257', 'A nostalgic story of loss and burgeoning sexuality', 1, 'Norwegian Wood', 18.75, 4, '2026-05-13 02:48:45.983257') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.9ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (6, '2026-05-13 02:48:45.992451', 'A romantic novel following Elizabeth Bennet', 4, 'Pride and Prejudice', 12.99, 1, '2026-05-13 02:48:45.992451') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.5ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (7, '2026-05-13 02:48:46.001692', 'A horror novel about the Torrance family', 5, 'The Shining', 16.99, 3, '2026-05-13 02:48:46.001692') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.3ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (8, '2026-05-13 02:48:46.010767', 'A young shepherd''s journey to find treasure', 1, 'The Alchemist', 14.5, 2, '2026-05-13 02:48:46.010767') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.8ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (9, '2026-05-13 02:48:46.018183', 'The story of two friends in 1950s Naples', 1, 'My Brilliant Friend', 20.0, 5, '2026-05-13 02:48:46.018183') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.4ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (10, '2026-05-13 02:48:46.027654', 'An epic high-fantasy novel', 2, 'The Lord of the Rings', 29.99, 2, '2026-05-13 02:48:46.027654') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.4ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (3, '2026-05-13 02:48:46.035778', 'A satirical allegorical novella', 3, 'Animal Farm', 11.99, 1, '2026-05-13 02:48:46.035778') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.5ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (1, '2026-05-13 02:48:46.046723', 'A love story spanning decades', 4, 'El Amor en los Tiempos del Colera', 24.0, 5, '2026-05-13 02:48:46.046723') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.8ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (5, '2026-05-13 02:48:46.055422', 'A surreal narrative intertwining two stories', 2, 'Kafka on the Shore', 21.25, 4, '2026-05-13 02:48:46.055422') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.5ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (7, '2026-05-13 02:48:46.063885', 'A horror novel about an ancient evil in Derry', 5, 'It', 18.99, 3, '2026-05-13 02:48:46.063885') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mBook Create (2.7ms)[0m  [1m[32mINSERT INTO "books" ("author_id", "created_at", "description", "genre_id", "name", "price", "publisher_id", "updated_at") VALUES (6, '2026-05-13 02:48:46.072131', 'A story of love and heartbreak', 4, 'Sense and Sensibility', 13.5, 1, '2026-05-13 02:48:46.072131') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'superadmin@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'superadmin@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email", "encrypted_password", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at") VALUES ('2026-05-13 02:48:46.500834', 'superadmin@test.com', '$2a$12$/7zuLINS3NVwfWIPtnjpCuZg3shcyA30jCPBsXv.gxCWfkKNpYpau', NULL, NULL, NULL, 2, '2026-05-13 02:48:46.500834') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mUser Exists? (3.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'admin@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email", "encrypted_password", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at") VALUES ('2026-05-13 02:48:46.919446', 'admin@test.com', '$2a$12$S9QbEPapqmc.4Skr/U/J8e7jrTECFFltWYovThfKumwNrSEPh1fjS', NULL, NULL, NULL, 1, '2026-05-13 02:48:46.919446') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (11.5ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'customer@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN /*application='RorBookstore'*/[0m
+  [1m[36mUser Exists? (3.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'customer@test.com' LIMIT 1 /*application='RorBookstore'*/[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "email", "encrypted_password", "remember_created_at", "reset_password_sent_at", "reset_password_token", "role", "updated_at") VALUES ('2026-05-13 02:48:47.354708', 'customer@test.com', '$2a$12$iixVZ.ZrEI86s.To/G6U4eoT1Mah73KaTBUQgwJNqK9ztEDG2VxOG', NULL, NULL, NULL, 0, '2026-05-13 02:48:47.354708') RETURNING "id" /*application='RorBookstore'*/[0m
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT /*application='RorBookstore'*/[0m
+  [1m[36mAuthor Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "authors" /*application='RorBookstore'*/[0m
+  [1m[36mPublisher Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "publishers" /*application='RorBookstore'*/[0m
+  [1m[36mGenre Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "genres" /*application='RorBookstore'*/[0m
+  [1m[36mBook Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*application='RorBookstore'*/[0m
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" /*application='RorBookstore'*/[0m
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:03:09 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RorBookstore'*/[0m
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (1.1ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mAuthor Load (0.9ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (0.7ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (0.7ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 86ms (Views: 58.8ms | ActiveRecord: 43.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/auth/sign_in" for 127.0.0.1 at 2026-05-12 23:03:24 -0400
+Processing by Api::V1::SessionsController#create as JSON
+  Parameters: {"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'admin@test.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='RorBookstore',controller='sessions'*/[0m
+Completed 200 OK in 422ms (Views: 0.7ms | ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:03:25 -0400
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:03:25 -0400
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:03:25 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (2.1ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (5.6ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Processing by Api::V1::GenresController#index as */*
+  Parameters: {"genre"=>{}}
+  [1m[36mPublisher Load (4.1ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (1.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 47ms (Views: 34.0ms | ActiveRecord: 12.8ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:03:25 -0400
+Processing by Api::V1::PublishersController#index as */*
+  Parameters: {"publisher"=>{}}
+  [1m[36mPublisher Load (1.5ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+Completed 200 OK in 9ms (Views: 6.7ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mGenre Load (54.9ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+  [1m[36mAuthor Load (71.5ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+Completed 200 OK in 60ms (Views: -24.3ms | ActiveRecord: 84.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+Completed 200 OK in 80ms (Views: -23.3ms | ActiveRecord: 102.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:03:27 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (1.1ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mAuthor Load (1.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (1.0ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (1.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 26ms (Views: 20.8ms | ActiveRecord: 4.4ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:03:27 -0400
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:03:27 -0400
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:03:27 -0400
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+Processing by Api::V1::PublishersController#index as */*
+  Parameters: {"publisher"=>{}}
+Processing by Api::V1::GenresController#index as */*
+  [1m[36mAuthor Load (4.8ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+  Parameters: {"genre"=>{}}
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+  [1m[36mPublisher Load (3.7ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+Completed 200 OK in 10ms (Views: 4.9ms | ActiveRecord: 4.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+  [1m[36mGenre Load (5.0ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+Completed 200 OK in 12ms (Views: 7.8ms | ActiveRecord: 3.7ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 12ms (Views: 6.8ms | ActiveRecord: 5.0ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+Started PUT "/api/v1/admin/books/7" for 127.0.0.1 at 2026-05-12 23:03:44 -0400
+Processing by Api::V1::Admin::BooksController#update as */*
+  Parameters: {"book"=>{"name"=>"The Shining", "description"=>"A horror novel about the Torrance family. Oh yeah", "price"=>"16.99", "author_id"=>7, "publisher_id"=>3, "genre_id"=>5}, "id"=>"7"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 2 LIMIT 1 /*action='update',application='RorBookstore',controller='books'*/[0m
+  [1m[36mJwtDenylist Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "jwt_denylists" WHERE "jwt_denylists"."jti" = 'eee8a78d-02d6-48a9-bb79-598367639354' LIMIT 1 /*action='update',application='RorBookstore',controller='books'*/[0m
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = 7 LIMIT 1 /*action='update',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/admin/books_controller.rb:39:in `set_book'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*action='update',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/admin/books_controller.rb:26:in `update'
+  [1m[36mBook Update (3.9ms)[0m  [1m[33mUPDATE "books" SET "description" = 'A horror novel about the Torrance family. Oh yeah', "updated_at" = '2026-05-13 03:03:44.756134' WHERE "books"."id" = 7 /*action='update',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/admin/books_controller.rb:26:in `update'
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[35mCOMMIT /*action='update',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/admin/books_controller.rb:26:in `update'
+  [1m[36mAuthor Load (0.7ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" = 7 LIMIT 1 /*action='update',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/admin/books_controller.rb:27:in `update'
+  [1m[36mPublisher Load (0.7ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 3 LIMIT 1 /*action='update',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/admin/books_controller.rb:27:in `update'
+  [1m[36mGenre Load (0.7ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" = 5 LIMIT 1 /*action='update',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/admin/books_controller.rb:27:in `update'
+Completed 200 OK in 57ms (Views: 14.8ms | ActiveRecord: 22.1ms (7 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:03:44 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.6ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mAuthor Load (0.6ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (0.5ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (0.6ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 19ms (Views: 15.9ms | ActiveRecord: 2.2ms (4 queries, 0 cached) | GC: 1.8ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:04:01 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (0.8ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mAuthor Load (0.6ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (0.7ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (1.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 23ms (Views: 19.1ms | ActiveRecord: 3.2ms (4 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:04:01 -0400
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:04:01 -0400
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:04:01 -0400
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (1.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+Processing by Api::V1::PublishersController#index as */*
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+  Parameters: {"publisher"=>{}}
+Processing by Api::V1::GenresController#index as */*
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.5ms)
+
+
+  Parameters: {"genre"=>{}}
+  [1m[36mPublisher Load (2.3ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+  [1m[36mGenre Load (1.4ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 6.0ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:04:02 -0400
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mAuthor Load (0.9ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:04:06 -0400
+Processing by Api::V1::PublishersController#index as */*
+  Parameters: {"publisher"=>{}}
+  [1m[36mPublisher Load (0.6ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:04:09 -0400
+Processing by Api::V1::GenresController#index as */*
+  Parameters: {"genre"=>{}}
+  [1m[36mGenre Load (0.6ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:04:14 -0400
+Processing by Api::V1::GenresController#index as */*
+  Parameters: {"genre"=>{}}
+  [1m[36mGenre Load (0.8ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:04:17 -0400
+Processing by Api::V1::GenresController#index as */*
+  Parameters: {"genre"=>{}}
+  [1m[36mGenre Load (0.6ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 2.8ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:04:21 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (2.5ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mAuthor Load (1.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (0.8ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (1.1ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 28ms (Views: 21.7ms | ActiveRecord: 5.5ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:04:21 -0400
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:04:21 -0400
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:04:21 -0400
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+Processing by Api::V1::PublishersController#index as */*
+  Parameters: {"publisher"=>{}}
+  [1m[36mAuthor Load (2.2ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+Processing by Api::V1::GenresController#index as */*
+  [1m[36mPublisher Load (3.0ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 2.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  Parameters: {"genre"=>{}}
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+Completed 200 OK in 12ms (Views: 8.5ms | ActiveRecord: 2.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mGenre Load (2.5ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 2.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:04:35 -0400
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:04:35 -0400
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:04:35 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+Processing by Api::V1::PublishersController#index as */*
+  [1m[36mBook Load (4.8ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  Parameters: {"publisher"=>{}}
+  [1m[36mAuthor Load (4.6ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+Completed 200 OK in 13ms (Views: 8.2ms | ActiveRecord: 4.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mPublisher Load (7.0ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+  [1m[36mAuthor Load (6.6ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+Completed 200 OK in 13ms (Views: 5.9ms | ActiveRecord: 6.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:04:35 -0400
+  [1m[36mPublisher Load (1.1ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (1.6ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 51ms (Views: 36.0ms | ActiveRecord: 14.1ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Api::V1::GenresController#index as */*
+  Parameters: {"genre"=>{}}
+  [1m[36mGenre Load (0.8ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:05:16 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (1.9ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mAuthor Load (1.1ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (0.8ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (0.5ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 133ms (Views: 125.9ms | ActiveRecord: 4.2ms (4 queries, 0 cached) | GC: 93.3ms)
+
+
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:05:16 -0400
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:05:16 -0400
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:05:16 -0400
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+Processing by Api::V1::PublishersController#index as */*
+  Parameters: {"publisher"=>{}}
+  [1m[36mAuthor Load (3.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+Processing by Api::V1::GenresController#index as */*
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+  [1m[36mPublisher Load (3.5ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  Parameters: {"genre"=>{}}
+Completed 200 OK in 10ms (Views: 7.0ms | ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 1.9ms)
+
+
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+Completed 200 OK in 12ms (Views: 8.4ms | ActiveRecord: 3.5ms (1 query, 0 cached) | GC: 1.9ms)
+
+
+  [1m[36mGenre Load (3.8ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 3.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:05:20 -0400
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:05:20 -0400
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:05:20 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mBook Load (3.6ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Processing by Api::V1::PublishersController#index as */*
+  [1m[36mAuthor Load (4.4ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+  Parameters: {"publisher"=>{}}
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+  [1m[36mAuthor Load (2.8ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 4.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (3.6ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+Completed 200 OK in 12ms (Views: 8.0ms | ActiveRecord: 3.6ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+  [1m[36mPublisher Load (4.2ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:05:20 -0400
+  [1m[36mGenre Load (1.9ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 38ms (Views: 25.2ms | ActiveRecord: 12.4ms (4 queries, 0 cached) | GC: 0.9ms)
+
+
+Processing by Api::V1::GenresController#index as */*
+  Parameters: {"genre"=>{}}
+  [1m[36mGenre Load (0.6ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:05:28 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mAuthor Load (1.0ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mPublisher Load (1.0ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (0.7ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 31ms (Views: 26.8ms | ActiveRecord: 3.6ms (4 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:05:28 -0400
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:05:28 -0400
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:05:28 -0400
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+Processing by Api::V1::GenresController#index as */*
+  Parameters: {"genre"=>{}}
+Processing by Api::V1::PublishersController#index as */*
+  [1m[36mAuthor Load (5.4ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+  [1m[36mGenre Load (2.6ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  Parameters: {"publisher"=>{}}
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 17ms (Views: 10.4ms | ActiveRecord: 5.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Completed 200 OK in 14ms (Views: 11.6ms | ActiveRecord: 2.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mPublisher Load (8.0ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+Completed 200 OK in 14ms (Views: 6.0ms | ActiveRecord: 8.0ms (1 query, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/api/v1/books" for 127.0.0.1 at 2026-05-12 23:08:13 -0400
+Started GET "/api/v1/authors" for 127.0.0.1 at 2026-05-12 23:08:13 -0400
+Started GET "/api/v1/genres" for 127.0.0.1 at 2026-05-12 23:08:13 -0400
+Processing by Api::V1::BooksController#index as */*
+  Parameters: {"book"=>{}}
+Processing by Api::V1::AuthorsController#index as */*
+  Parameters: {"author"=>{}}
+  [1m[36mBook Load (4.5ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Processing by Api::V1::GenresController#index as */*
+  [1m[36mAuthor Load (6.8ms)[0m  [1m[34mSELECT "authors".* FROM "authors" /*action='index',application='RorBookstore',controller='authors'*/[0m
+  Parameters: {"genre"=>{}}
+  ↳ app/controllers/api/v1/authors_controller.rb:8:in `index'
+  [1m[36mAuthor Load (4.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors" WHERE "authors"."id" IN (1, 2, 3, 4, 5, 6, 8, 9, 10, 7) /*action='index',application='RorBookstore',controller='books'*/[0m
+Completed 200 OK in 15ms (Views: 8.0ms | ActiveRecord: 6.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (7.8ms)[0m  [1m[34mSELECT "genres".* FROM "genres" /*action='index',application='RorBookstore',controller='genres'*/[0m
+  ↳ app/controllers/api/v1/genres_controller.rb:8:in `index'
+Completed 200 OK in 16ms (Views: 7.4ms | ActiveRecord: 7.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mPublisher Load (4.9ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" IN (1, 2, 3, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+Started GET "/api/v1/publishers" for 127.0.0.1 at 2026-05-12 23:08:13 -0400
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+  [1m[36mGenre Load (1.2ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."id" IN (2, 3, 1, 4, 5) /*action='index',application='RorBookstore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:8:in `index'
+Completed 200 OK in 55ms (Views: 38.7ms | ActiveRecord: 14.8ms (4 queries, 0 cached) | GC: 2.8ms)
+
+
+Processing by Api::V1::PublishersController#index as */*
+  Parameters: {"publisher"=>{}}
+  [1m[36mPublisher Load (0.7ms)[0m  [1m[34mSELECT "publishers".* FROM "publishers" /*action='index',application='RorBookstore',controller='publishers'*/[0m
+  ↳ app/controllers/api/v1/publishers_controller.rb:8:in `index'
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
