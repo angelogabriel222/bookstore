@@ -32,6 +32,6 @@ yarn-debug.log*
 *.swo
 *~
 .DS_Store
-
+Gemfile.lock
 # Ignore key files for decrypting credentials and more.
 /config/*.key
