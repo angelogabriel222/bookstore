@@ -90,7 +90,7 @@ RAILS_MASTER_KEY=<tu_clave_maestra>
 ### Frontend (`ror_bookstore_frontend/.env`)
 
 ```
-VITE_API_URL=http://localhost:3000
+VITE_API_URL=http://localhost:3010
 ```
 
 ## Comandos útiles

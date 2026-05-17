@@ -22,6 +22,9 @@ yarn-debug.log*
 /tmp/
 /config/master.key
 /config/credentials/*.key
+/vendor/bundle/**
+/log/**
+/tmp/**
 .env
 .env.*
 !.env.example
@@ -29,3 +32,6 @@ yarn-debug.log*
 *.swo
 *~
 .DS_Store
+
+# Ignore key files for decrypting credentials and more.
+/config/*.key
